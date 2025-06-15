@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shooting Star + Musik</title>
+  <link rel="stylesheet" href="shooting-star.css" />
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <div id="lyrics"></div>
+  <audio id="music" src="ssstik.io_1749342748125.mp3" autoplay></audio>
+  <script src="shooting-star.js"></script>
+  <script>
+    const lirikList = [
+      { time: 0, text: "🌠 Shooting stars all around me" },
+      { time: 4, text: "✨ Falling fast from galaxies unknown" },
+      { time: 8, text: "🎵 Light up the sky, just like my soul" },
+      { time: 12, text: "💫 I'm dancing with the night alone" }
+    ];
+
+    const music = document.getElementById('music');
+    const lyricsDiv = document.getElementById('lyrics');
+
+    function sinkronLirik() {
+      const current = music.currentTime;
+      const lirik = lirikList.findLast(l => current >= l.time);
+      if (lirik) {
+        lyricsDiv.textContent = lirik.text;
+      }
+      requestAnimationFrame(sinkronLirik);
+    }
+
+    sinkronLirik();
+  </script>
+</body>
+</html>
